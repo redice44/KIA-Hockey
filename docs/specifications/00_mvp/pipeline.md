@@ -1,13 +1,13 @@
 # MVP Pipeline
 
-1. Create Placeholders for Routes
-  - Landing: /
-  - League Standings: /standings
-  - League Schedule: /games
-  - Team Schedule: /games/[Team Slug]
-  - Team Page: /[Team Slug]
-  - Player Page: /[Team Slug]/[Player Slug]
-  - Game Page: /games/[Game Slug]
+1. **[DONE]** Create Placeholders for Routes
+  - **[DONE]** Landing: /
+  - **[DONE]** League Standings: /standings
+  - **[DONE]** League Schedule: /schedule
+  - **[DONE]** Team Schedule: /games/[Team Slug]
+  - **[DONE]** Team Page: /team/[Team Slug]
+  - **[DONE]** Player Page: /team/[Team Slug]/[Player Slug]
+  - **[DONE]** Game Page: /games/[Game Slug]
 2. Landing
   - Pull Previous/Upcoming game info.
 3. League Schedule
