@@ -8,17 +8,28 @@
   - **[DONE]** Team Page: /team/[Team Slug]
   - **[DONE]** Player Page: /team/[Team Slug]/[Player Slug]
   - **[DONE]** Game Page: /games/[Game Slug]
-2. Landing
+2. Main Template
+  - Navigation
+    - Home
+    - Schedule (league)
+      - List teams?
+    - Standings
+    - Teams
+      - List teams
+  - Content
+  - Mobile
+  - Desktop
+3. Landing
   - Pull Previous/Upcoming game info.
-3. League Schedule
+4. League Schedule
   - Pull games list 
-4. Team Schedule
+5. Team Schedule
   - Pull games list
-5. Game Page
+6. Game Page
   - Pull game
-6. Team Page
+7. Team Page
   - Pull team
-7. Player Page
+8. Player Page
   - Pull player
-8. League Standings
+9. League Standings
   - Pull teams
