@@ -9,9 +9,8 @@ import OverviewContainer from '../containers/OverviewContainer.react';
 export default function(props) {
   return (
     <div>
-      <DetailsContainer />
       <NavigationContainer />
-      <OverviewContainer />
+      {props.children}
     </div>
   );
 }

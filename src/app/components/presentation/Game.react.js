@@ -4,6 +4,14 @@ import React from 'react';
 
 export default function(props) {
   return (
-    <p onClick={props.inc}>Game Name: {props.name}</p>
+    <div>
+      <p>Game Number: {props.num}</p>
+      {props.teams.map(team => {
+        return (
+          <p key={team.name}>{team.name}</p>
+        );
+      })}
+      <p>Time: {props.time}</p>
+    </div>
   );
 };

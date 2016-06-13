@@ -3,17 +3,42 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  game: 0
+  games: [
+    {
+      num: 0,
+      teams: [
+        {
+          name: 'Home Team'
+        },
+        {
+          name: 'Away Team'
+        }
+      ],
+      time: 'Wed 8:45'
+    },
+    {
+      num: 1,
+      teams: [
+        {
+          name: 'Home Team'
+        },
+        {
+          name: 'Away Team'
+        }
+      ],
+      time: 'Wed 10:00'
+    }
+  ]
 };
 
 function gameReducer(state = initialState, action) {
   switch(action.type) {
-    case 'change':
-      return Object.assign({}, state, { game: state.game + 1});
-      break;
-    case 'set':
-      return Object.assign({}, state, { game: action.val });
-      break;
+    case 'ADD_GAME':
+      console.log('Action Received: ADD_GAME');
+      const updatedGames = {
+        games: state.games.concat(action.games)
+      };
+      return Object.assign({}, state, updatedGames);
   }
 
   return state;
