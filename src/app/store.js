@@ -3,31 +3,55 @@
 import { createStore } from 'redux';
 
 const initialState = {
+  gameHighlight: 0,
   games: [
     {
       num: 0,
       teams: [
         {
-          name: 'Home Team'
+          name: 'Lucky Bastards'
         },
         {
-          name: 'Away Team'
+          name: 'Dragons'
         }
       ],
-      time: 'Wed 8:45'
-    },
-    {
+      time: 'Wed June 15 8:45'
+    }, {
       num: 1,
       teams: [
         {
-          name: 'Home Team'
+          name: 'Boozers'
         },
         {
-          name: 'Away Team'
+          name: 'Five Holers'
         }
       ],
-      time: 'Wed 10:00'
+      time: 'Wed June 15 10:00'
+    }, {
+      num: 2,
+      teams: [
+        {
+          name: 'Boozers'
+        },
+        {
+          name: 'Lucky Bastards'
+        }
+      ],
+      time: 'Wed June 22 8:45'
+    },
+    {
+      num: 3,
+      teams: [
+        {
+          name: 'Dragons'
+        },
+        {
+          name: 'Five Holers'
+        }
+      ],
+      time: 'Wed June 22 10:00'
     }
+
   ]
 };
 
@@ -39,6 +63,9 @@ function gameReducer(state = initialState, action) {
         games: state.games.concat(action.games)
       };
       return Object.assign({}, state, updatedGames);
+    case 'CHANGE_HIGHLIGHT':
+      console.log('Action Received: CHANGE_HIGHLIGHT', action);
+      return Object.assign({}, state, { gameHighlight: action.num });
   }
 
   return state;

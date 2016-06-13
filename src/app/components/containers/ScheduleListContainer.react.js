@@ -4,16 +4,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Store from '../../store';
-import Game from '../presentation/Game.react';
+import GameListItem from '../presentation/GameListItem.react';
 
 class ScheduleListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      games: props.games,
-      count: 2
+      games: props.games
     };
-    this.more = this.more.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -22,39 +20,25 @@ class ScheduleListContainer extends React.Component {
     });
   }
 
-  more() {
-    const g = {
-      num: this.state.count,
-      teams: [
-        {
-          name: 'Home Team'
-        },
-        {
-          name: 'Away Team'
-        }
-      ],
-      time: 'Wed 8:45'
-    };
-
-    Store.dispatch({
-      type: 'ADD_GAME',
-      games: g
-    });
-
-    this.setState({
-      count: this.state.count+1
-    });
+  // Will Trigger the details display to update
+  showDetails(gameNum) {
+    return function() {
+      Store.dispatch({
+        type: 'CHANGE_HIGHLIGHT',
+        num: gameNum
+      });
+    }
   }
 
   render() {
     return (
       <div>
-      <p onClick={this.more}>Clicky</p>
-      {this.state.games.map(game => {
-        return (
-          <Game key = { game.num } {...game} />
-        );
-      })}
+        <p>Schedule List Container (overview)</p>
+        {this.state.games.map(game => {
+          return (
+            <GameListItem key = { game.num } game = {game} showDetails = { this.showDetails } />
+          );
+        })}
       </div>
     );
   }
