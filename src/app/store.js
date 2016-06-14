@@ -57,16 +57,17 @@ const initialState = {
 };
 
 function gameReducer(state = initialState, action) {
+  console.log('Action Received', action);
   switch(action.type) {
     case 'ADD_GAME':
-      console.log('Action Received: ADD_GAME');
-      const updatedGames = {
+       const updatedGames = {
         games: state.games.concat(action.games)
       };
       return Object.assign({}, state, updatedGames);
     case 'CHANGE_HIGHLIGHT':
-      console.log('Action Received: CHANGE_HIGHLIGHT', action);
       return Object.assign({}, state, { gameHighlight: action.num });
+    case 'CHANGE_TEAM':
+      return Object.assign({}, state, { currentTeam: action.team });
   }
 
   return state;

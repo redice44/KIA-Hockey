@@ -17,7 +17,8 @@ class ScheduleListContainer extends React.Component {
 
   componentWillReceiveProps(props) {
     this.setState({
-      games: props.games
+      games: props.games,
+      currentTeam: props.team
     });
   }
 
@@ -36,8 +37,9 @@ class ScheduleListContainer extends React.Component {
       <div>
         <p>Schedule List Container (overview)</p>
         {this.state.games.filter(game => {
-          return game.teams[0].name === this.state.currentTeam || 
-              game.teams[1].name === this.state.currentTeam;
+          return this.state.currentTeam === 'All' ||
+            game.teams[0].name === this.state.currentTeam || 
+            game.teams[1].name === this.state.currentTeam;
         }).map(game => {
           return (
             <GameListItem key = { game.num } game = {game} showDetails = { this.showDetails } />
