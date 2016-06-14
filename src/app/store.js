@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 
 const initialState = {
   gameHighlight: 0,
+  currentTeam: 'Lucky Bastards',
   games: [
     {
       num: 0,
