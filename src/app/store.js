@@ -2,59 +2,40 @@
 
 import { createStore } from 'redux';
 
-const initialState = {
-  gameHighlight: 0,
-  currentTeam: 'Lucky Bastards',
-  games: [
-    {
-      num: 0,
-      teams: [
-        {
-          name: 'Lucky Bastards'
-        },
-        {
-          name: 'Dragons'
-        }
-      ],
-      time: 'Wed June 15 8:45'
-    }, {
-      num: 1,
-      teams: [
-        {
-          name: 'Boozers'
-        },
-        {
-          name: 'Five Holers'
-        }
-      ],
-      time: 'Wed June 15 10:00'
-    }, {
-      num: 2,
-      teams: [
-        {
-          name: 'Boozers'
-        },
-        {
-          name: 'Lucky Bastards'
-        }
-      ],
-      time: 'Wed June 22 8:45'
-    },
-    {
-      num: 3,
-      teams: [
-        {
-          name: 'Dragons'
-        },
-        {
-          name: 'Five Holers'
-        }
-      ],
-      time: 'Wed June 22 10:00'
-    }
+const teams = [
+  'Lucky Bastards',
+  'Dragons',
+  'Boozers',
+  'Five Holers'
+];
 
-  ]
+const numGames = 50;
+
+let initialState = {
+  gameHighlight: 0,
+  currentTeam: 'All',
+  games: []
 };
+
+for (let i = 0; i < numGames; i++) {
+  let home = Math.floor(Math.random() * 4);
+  let away = home;
+  while (home === away) {
+    away = Math.floor(Math.random() * 4);
+  }
+  initialState.games.push({
+    num: i,
+    teams: [
+      {
+        name: teams[home]
+      },
+      {
+        name: teams[away]
+      }
+    ],
+    time: `June ${ i } ${ i % 2 ? '8:45' : '10:00'}`
+  });
+}
 
 function gameReducer(state = initialState, action) {
   console.log('Action Received', action);
