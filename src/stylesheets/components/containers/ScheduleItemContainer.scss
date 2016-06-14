@@ -1,28 +1,24 @@
 @import "../../partials/media.scss";
 
-#nav {
+#schedule-item {
   /* Design */
-  background-color: #272727;
-  color: #ffffff;
+  background-color: #a4e2ff;
+  color: #464646;
 
   @include breakpoint(phone) {
     /* DOM */
     padding: 1em;
 
     /* Typography */
-    font-size: 2em;
+    font-size: 1em;
 
     /* Layout */
-    order: 2;
+    order: 1;
   }
 
   @include breakpoint(phablet) {
   }
 
   @include breakpoint(tablet) {
-  }
-
-  .team {
-    text-align: center;
   }
 }

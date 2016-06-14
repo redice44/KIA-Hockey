@@ -1,0 +1,14 @@
+$tablet-width: 50em;
+$phone-width: 37.5em;
+
+@mixin breakpoint($point) {
+  @if $point == tablet {
+    @media (min-width: $tablet-width) { @content }
+  }
+  @else if $point == phablet {
+    @media(min-width: $phone-width) { @content }
+  }
+  @else if $point == phone {
+    @media (max-width: $phone-width) { @content; }
+  }
+}

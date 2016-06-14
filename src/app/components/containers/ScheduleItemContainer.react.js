@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import Store from '../../store';
 import Game from '../presentation/Game.react';
 
+/* Stylesheets */
+require('../../../stylesheets/components/containers/ScheduleItemContainer.scss');
+
 class ScheduleItemContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -22,8 +25,7 @@ class ScheduleItemContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Schedule Item Container (Details)</p>
+      <div id = 'schedule-item'>
         <Game game = { this.state.game } />
       </div>
     );

@@ -1,14 +1,52 @@
-.game {
-  background-color: #d8678e; }
 #nav {
+  /* Design */
   background-color: #272727;
-  color: #dedede; }
+  color: #ffffff; }
+  @media (max-width: 37.5em) {
+    #nav {
+      /* DOM */
+      padding: 1em;
+      /* Typography */
+      font-size: 2em;
+      /* Layout */
+      order: 2; } }
   #nav .team {
     text-align: center; }
+#schedule-list {
+  /* Design */
+  background-color: #a4e2ff;
+  color: #464646; }
+  @media (max-width: 37.5em) {
+    #schedule-list {
+      /* DOM */
+      padding: 1em;
+      /* Typography */
+      font-size: 1em;
+      /* Layout */
+      order: 3; }
+      #schedule-list > .game {
+        padding: 0.5em; }
+      #schedule-list > .highlight {
+        background-color: #8c8cb9; } }
+#schedule-item {
+  /* Design */
+  background-color: #a4e2ff;
+  color: #464646; }
+  @media (max-width: 37.5em) {
+    #schedule-item {
+      /* DOM */
+      padding: 1em;
+      /* Typography */
+      font-size: 1em;
+      /* Layout */
+      order: 1; } }
 #app {
+  /* Typography */
   font-family: sans-serif;
-  background-color: #da00ff; }
-.game-list-item {
-  background-color: #adade4; }
+  /* Design */
+  background-color: #da00ff;
+  /* Layout */
+  display: flex;
+  flex-direction: column; }
 
 /*# sourceMappingURL=../js/bundle.map*/

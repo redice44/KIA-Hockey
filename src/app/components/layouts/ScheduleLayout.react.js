@@ -7,7 +7,7 @@ import ScheduleItemContainer from '../containers/ScheduleItemContainer.react';
 
 export default function(props) {
   return (
-    <div>
+    <div id = >
       <ScheduleListContainer />
       <ScheduleItemContainer />
     </div>
