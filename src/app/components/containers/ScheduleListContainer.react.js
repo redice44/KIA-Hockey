@@ -10,7 +10,8 @@ class ScheduleListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      games: props.games
+      games: props.games,
+      currentTeam: props.team
     };
   }
 
@@ -34,7 +35,10 @@ class ScheduleListContainer extends React.Component {
     return (
       <div>
         <p>Schedule List Container (overview)</p>
-        {this.state.games.map(game => {
+        {this.state.games.filter(game => {
+          return game.teams[0].name === this.state.currentTeam || 
+              game.teams[1].name === this.state.currentTeam;
+        }).map(game => {
           return (
             <GameListItem key = { game.num } game = {game} showDetails = { this.showDetails } />
           );
@@ -46,7 +50,8 @@ class ScheduleListContainer extends React.Component {
 
 const mapStateToProps = function(store) {
   return {
-    games: store.games
+    games: store.games,
+    team: store.currentTeam
   }
 }
 
