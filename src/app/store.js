@@ -3,6 +3,7 @@
 import { createStore } from 'redux';
 
 const teams = [
+  // All: displays all games
   'Lucky Bastards',
   'Dragons',
   'Boozers',
@@ -13,7 +14,7 @@ const numGames = 50;
 
 let initialState = {
   gameHighlight: 0,
-  currentTeam: 'All',
+  currentTeam: 'Lucky Bastards',
   games: []
 };
 

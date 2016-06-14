@@ -1,5 +1,14 @@
 .game {
-  background-color: #d8678e;
-}.game-list-item {
-  background-color: #adade4;
-}
+  background-color: #d8678e; }
+#nav {
+  background-color: #272727;
+  color: #dedede; }
+  #nav .team {
+    text-align: center; }
+#app {
+  font-family: sans-serif;
+  background-color: #da00ff; }
+.game-list-item {
+  background-color: #adade4; }
+
+/*# sourceMappingURL=../js/bundle.map*/

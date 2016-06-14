@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
  
 import Store from '../../store';
 
+/* Stylesheets */
+require('../../../stylesheets/components/containers/NavigationContainer.scss');
+
 class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -33,13 +36,8 @@ class NavigationContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Navigation Container</p>
-        <p>Current Team: { this.state.team }</p>
-        <p onClick = { this.changeTeam("Lucky Bastards") }>Lucky Bastards</p>
-        <p onClick = { this.changeTeam("Dragons") }>Dragons</p>
-        <p onClick = { this.changeTeam("Five Holers") }>Five Holers</p>
-        <p onClick = { this.changeTeam("Boozers") }>Boozers</p>
+      <div id = 'nav'>
+        <p className = 'team'>{ this.state.team }</p>
       </div>
     )
   }
