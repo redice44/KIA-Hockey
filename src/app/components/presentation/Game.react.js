@@ -2,9 +2,12 @@
 
 import React from 'react';
 
+/* Stylesheets */
+require('../../../stylesheets/components/presentation/Game.scss');
+
 export default function(props) {
   return (
-    <div>
+    <div className = 'game'>
       <p>Game Number: {props.game.num}</p>
       {props.game.teams.map(team => {
         return (
