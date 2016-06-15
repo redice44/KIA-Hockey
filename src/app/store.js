@@ -42,7 +42,7 @@ function gameReducer(state = initialState, action) {
   console.log('Action Received', action);
   switch(action.type) {
     case 'ADD_GAME':
-       const updatedGames = {
+      const updatedGames = {
         games: state.games.concat(action.games)
       };
       return Object.assign({}, state, updatedGames);

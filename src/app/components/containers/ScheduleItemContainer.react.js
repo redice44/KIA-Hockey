@@ -22,9 +22,14 @@ class ScheduleItemContainer extends React.Component {
   render() {
     console.log('Rendering: ScheduleItemContainer');
 
+    const opponent = this.state.game.teams[0].name === this.state.team ? 1 : 0;
+
     return (
       <div id = 'schedule-item'>
-        <Game game = { this.state.game } />
+        <Game 
+          game = { this.state.game } 
+          opponent = { this.state.game.teams[opponent] }
+        />
       </div>
     );
   }
@@ -32,13 +37,15 @@ class ScheduleItemContainer extends React.Component {
 
 function updateState(props) {
   return {
-    game: props.game
+    game: props.game,
+    team: props.team
   };
 }
 
 const mapStateToProps = function(store) {
   return {
-    game: store.games[store.gameHighlight]
+    game: store.games[store.gameHighlight],
+    team: store.currentTeam
   }
 }
 
