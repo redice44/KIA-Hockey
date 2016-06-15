@@ -18,7 +18,8 @@ const numGames = 50;
 let initialState = {
   gameHighlight: 0,
   currentTeam: 'Lucky Bastards',
-  games: []
+  games: [],
+  teams: teams
 };
 
 for (let i = 0; i < numGames; i++) {
