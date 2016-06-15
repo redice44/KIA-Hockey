@@ -7,6 +7,10 @@
 
   @include breakpoint(phone) {
     /* DOM */
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    border-left: 0px;
+    border-right: 0px;
     padding: 1em;
 
     /* Typography */

@@ -2,8 +2,8 @@
 
 #schedule-list {
   /* Design */
-  background-color: #a4e2ff;
-  color: #464646;
+  background-color: #062f42;
+  color: #e2e2e2;
 
   @include breakpoint(phone) {
     /* DOM */
@@ -17,10 +17,16 @@
 
     & > .game {
       padding: 0.5em;
+      padding-left: 1em;
     }
 
     & > .highlight {
-        background-color: #8c8cb9
+        /* DOM */
+        border: 0px solid transparent;
+        border-radius: 1em;
+
+        /* Design */
+        background-color: #0c4a44;
       }
   }
 

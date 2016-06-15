@@ -1,0 +1,26 @@
+@import "../../partials/media.scss";
+
+
+#highlight-game {
+
+  @include breakpoint(phone) {
+    & > .time {
+      /* Typography */
+      font-size: 1em;
+      text-align: center;
+    }
+
+    & > .opponent {
+      /* Typography */
+      font-size: 1.5em;
+      text-align: center;
+    }
+  }
+
+  @include breakpoint(phablet) {
+  }
+
+  @include breakpoint(tablet) {
+  }
+
+}

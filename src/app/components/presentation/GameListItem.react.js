@@ -12,7 +12,7 @@ export default function(props) {
 
   return (
     <div onClick = { boundClick } className = { classes }>
-      <span className = "home">{ props.game.teams[0].name }</span> vs <span className = "away">{ props.game.teams[1].name }</span>
+      #{ props.game.num }: <span className = "home">{ props.game.teams[0].name }</span> vs <span className = "away">{ props.game.teams[1].name }</span>
     </div>
   );
 }

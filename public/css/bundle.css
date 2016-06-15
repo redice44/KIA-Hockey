@@ -5,6 +5,10 @@
   @media (max-width: 37.5em) {
     #nav {
       /* DOM */
+      box-sizing: border-box;
+      border: 1px solid #ffffff;
+      border-left: 0px;
+      border-right: 0px;
       padding: 1em;
       /* Typography */
       font-size: 2em;
@@ -14,8 +18,8 @@
     text-align: center; }
 #schedule-list {
   /* Design */
-  background-color: #a4e2ff;
-  color: #464646; }
+  background-color: #062f42;
+  color: #e2e2e2; }
   @media (max-width: 37.5em) {
     #schedule-list {
       /* DOM */
@@ -25,13 +29,27 @@
       /* Layout */
       order: 3; }
       #schedule-list > .game {
-        padding: 0.5em; }
+        padding: 0.5em;
+        padding-left: 1em; }
       #schedule-list > .highlight {
-        background-color: #8c8cb9; } }
+        /* DOM */
+        border: 0px solid transparent;
+        border-radius: 1em;
+        /* Design */
+        background-color: #0c4a44; } }
+@media (max-width: 37.5em) {
+  #highlight-game > .time {
+    /* Typography */
+    font-size: 1em;
+    text-align: center; }
+  #highlight-game > .opponent {
+    /* Typography */
+    font-size: 1.5em;
+    text-align: center; } }
 #schedule-item {
   /* Design */
-  background-color: #a4e2ff;
-  color: #464646; }
+  background-color: #0c4a44;
+  color: #e2e2e2; }
   @media (max-width: 37.5em) {
     #schedule-item {
       /* DOM */
