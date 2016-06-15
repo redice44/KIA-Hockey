@@ -1,6 +1,9 @@
 'use strict';
 
 import { createStore } from 'redux';
+let Moment = require('moment-timezone');
+
+let gameTime = Moment.tz('Jun 15 2016 10:00PM', 'MMM Do YYYY hh:mmA', 'America/New_York');
 
 const teams = [
   // All: displays all games
@@ -21,9 +24,18 @@ let initialState = {
 for (let i = 0; i < numGames; i++) {
   let home = Math.floor(Math.random() * 4);
   let away = home;
+  
   while (home === away) {
     away = Math.floor(Math.random() * 4);
   }
+
+  if (i % 2 === 0) {
+    gameTime.add(7, 'days').subtract(1, 'hour').subtract(15, 'minutes');
+  } else {
+    gameTime.add(1, 'hour').add(15, 'minutes');
+  }
+  console.log(`${i}: ${gameTime.format()}`);
+
   initialState.games.push({
     num: i,
     teams: [
@@ -34,7 +46,7 @@ for (let i = 0; i < numGames; i++) {
         name: teams[away]
       }
     ],
-    time: `June ${ i } ${ i % 2 ? '8:45' : '10:00'}`
+    time: gameTime.clone()
   });
 }
 

@@ -21,11 +21,15 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loaders: ['babel-loader']
       },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract("style-loader", sassLoaders.join('!'))
+      },
+      {
+        test: /\.json$/,
+        loaders: ['json-loader']
       }
     ]
   },
