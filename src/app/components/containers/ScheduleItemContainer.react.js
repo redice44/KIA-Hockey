@@ -12,24 +12,28 @@ require('../../../stylesheets/components/containers/ScheduleItemContainer.scss')
 class ScheduleItemContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      game: props.game
-    };
+    this.state = updateState(props);
   }
 
   componentWillReceiveProps(props) {
-    this.setState({
-      game: props.game
-    });
+    this.setState(updateState(props));
   }
 
   render() {
+    console.log('Rendering: ScheduleItemContainer');
+
     return (
       <div id = 'schedule-item'>
         <Game game = { this.state.game } />
       </div>
     );
   }
+}
+
+function updateState(props) {
+  return {
+    game: props.game
+  };
 }
 
 const mapStateToProps = function(store) {

@@ -13,6 +13,11 @@ class ScheduleListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = updateState(props);
+
+    Store.dispatch({
+      type: 'CHANGE_HIGHLIGHT',
+      num: this.state.highlight
+    });
   }
 
   componentWillReceiveProps(props) {
@@ -30,13 +35,11 @@ class ScheduleListContainer extends React.Component {
   }
 
   render() {
+    console.log('Rendering: ScheduleListContainer');
+
     return (
       <div id = 'schedule-list'>
-        {this.state.games.filter(game => {
-          return this.state.currentTeam === 'All' ||
-            game.teams[0].name === this.state.currentTeam || 
-            game.teams[1].name === this.state.currentTeam;
-        }).map(game => {
+        { this.state.games.map(game=> {
           return (
             <GameListItem key = { game.num } 
               game = { game } 
@@ -59,10 +62,17 @@ function updateState(props) {
 }
 
 const mapStateToProps = function(store) {
+  const filteredGames = store.games.filter(game => {
+    return store.currentTeam === 'All' ||
+      game.teams[0].name === store.currentTeam ||
+      game.teams[1].name === store.currentTeam;
+  });
+
+  const highlightGameNum = filteredGames[0].num;
+
   return {
-    games: store.games,
-    team: store.currentTeam,
-    highlight: store.gameHighlight
+    games: filteredGames,
+    highlight: highlightGameNum
   }
 }
 
