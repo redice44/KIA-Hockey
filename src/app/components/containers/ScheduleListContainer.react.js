@@ -16,7 +16,7 @@ class ScheduleListContainer extends React.Component {
 
     Store.dispatch({
       type: 'CHANGE_HIGHLIGHT',
-      num: this.state.highlight
+      num: this.state.games[0].num
     });
   }
 
@@ -68,11 +68,9 @@ const mapStateToProps = function(store) {
       game.teams[1].name === store.currentTeam;
   });
 
-  const highlightGameNum = filteredGames[0].num;
-
   return {
     games: filteredGames,
-    highlight: highlightGameNum
+    highlight: store.gameHighlight
   }
 }
 
