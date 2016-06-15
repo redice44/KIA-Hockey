@@ -19,6 +19,7 @@ let initialState = {
   gameHighlight: 0,
   currentTeam: 'Lucky Bastards',
   games: [],
+  filteredGames: [],
   teams: teams
 };
 
@@ -35,7 +36,6 @@ for (let i = 0; i < numGames; i++) {
   } else {
     gameTime.add(1, 'hour').add(15, 'minutes');
   }
-  console.log(`${i}: ${gameTime.format()}`);
 
   initialState.games.push({
     num: i,
@@ -52,7 +52,8 @@ for (let i = 0; i < numGames; i++) {
 }
 
 function gameReducer(state = initialState, action) {
-  console.log('Action Received', action);
+  console.log(`Action Received: `, action);
+
   switch(action.type) {
     case 'ADD_GAME':
       const updatedGames = {
@@ -63,6 +64,8 @@ function gameReducer(state = initialState, action) {
       return Object.assign({}, state, { gameHighlight: action.num });
     case 'CHANGE_TEAM':
       return Object.assign({}, state, { currentTeam: action.team });
+    case 'UPDATE_FILTER':
+      return Object.assign({}, state, { filteredGames: action.filteredGames });
   }
 
   return state;

@@ -12,6 +12,10 @@ class NavigationContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = updateState(props);
+    this.updateFilter = this.updateFilter.bind(this);
+    this.changeTeam = this.changeTeam.bind(this);
+
+    this.updateFilter();
   }
 
   changeTeam(e) {
@@ -19,14 +23,31 @@ class NavigationContainer extends React.Component {
       type: 'CHANGE_TEAM',
       team: e.target.value
     });
+
+    this.updateFilter(e.target.value);
+  }
+
+  updateFilter(team = this.state.team) {
+    let filtered = this.state.games.filter(game => {
+      return team === 'All' ||
+        game.teams[0].name === team ||
+        game.teams[1].name === team;  
+    });
+
+    Store.dispatch({
+      type: 'UPDATE_FILTER',
+      filteredGames: filtered
+    });
+
+    Store.dispatch({
+      type: 'CHANGE_HIGHLIGHT',
+      num: filtered[0].num
+    });
   }
 
   componentWillReceiveProps(props) {
+    console.log('Updating: NavigationContainer', props);
     this.setState(updateState(props));
-  }
-
-  handleChange(e) {
-    console.log(e.target.value);
   }
 
   render() {
@@ -52,14 +73,16 @@ class NavigationContainer extends React.Component {
 function updateState(props) {
   return {
     team: props.team,
-    teams: props.teams
+    teams: props.teams,
+    games: props.games
   };
 }
 
 const mapStateToProps = function(store) {
   return {
     team: store.currentTeam,
-    teams: store.teams
+    teams: store.teams,
+    games: store.games
   };
 };
 

@@ -13,14 +13,11 @@ class ScheduleListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = updateState(props);
-
-    Store.dispatch({
-      type: 'CHANGE_HIGHLIGHT',
-      num: this.state.games[0].num
-    });
   }
 
   componentWillReceiveProps(props) {
+    console.log('Updating: ScheduleListContainer', props);
+
     this.setState(updateState(props));
   }
 
@@ -31,7 +28,7 @@ class ScheduleListContainer extends React.Component {
         type: 'CHANGE_HIGHLIGHT',
         num: gameNum
       });
-    }
+    };
   }
 
   render() {
@@ -56,20 +53,13 @@ class ScheduleListContainer extends React.Component {
 function updateState(props) {
   return {
     games: props.games,
-    currentTeam: props.team,
     highlight: props.highlight
   }
 }
 
 const mapStateToProps = function(store) {
-  const filteredGames = store.games.filter(game => {
-    return store.currentTeam === 'All' ||
-      game.teams[0].name === store.currentTeam ||
-      game.teams[1].name === store.currentTeam;
-  });
-
   return {
-    games: filteredGames,
+    games: store.filteredGames,
     highlight: store.gameHighlight
   }
 }
