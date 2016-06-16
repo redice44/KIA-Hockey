@@ -11,6 +11,7 @@ const teams = [
 ];
 
 let initialState = {
+  _stale: true,
   gameHighlight: 0,
   currentTeam: 'Lucky Bastards',
   games: [],
@@ -26,7 +27,7 @@ function gameReducer(state = initialState, action) {
     case 'CHANGE_TEAM':
       return Object.assign({}, state, { currentTeam: action.team });
     case 'SET_ALL_GAMES':
-      return Object.assign({}, state, { games: action.games });
+      return Object.assign({}, state, { games: action.games, _stale: false });
   }
 
   return state;
