@@ -5,6 +5,8 @@
   @media (max-width: 37.5em) {
     #nav {
       /* DOM */
+      width: 100%;
+      height: 15vh;
       box-sizing: border-box;
       border: 1px solid #ffffff;
       border-left: 0px;
@@ -13,16 +15,11 @@
       /* Typography */
       font-size: 2em;
       /* Layout */
-      order: 2;
-      text-align: center; }
-      #nav > select {
-        /* Typography */
-        font-size: 1em;
-        /* Design */
-        color: #ffffff; }
-        #nav > select > option {
-          /* Typography */
-          font-size: 0.5em; } }
+      display: flex;
+      position: fixed;
+      top: 15vh;
+      justify-content: center;
+      align-items: center; } }
 #schedule-list {
   /* Design */
   background-color: #062f42;
@@ -30,13 +27,13 @@
   @media (max-width: 37.5em) {
     #schedule-list {
       /* DOM */
+      margin-top: 30vh;
       padding: 1em;
       /* Typography */
       font-size: 1em;
-      /* Layout */
-      order: 3; }
+      /* Layout */ }
       #schedule-list > .game {
-        padding: 0.5em;
+        padding: 1em;
         padding-left: 1em; }
       #schedule-list > .highlight {
         /* DOM */
@@ -60,18 +57,22 @@
   @media (max-width: 37.5em) {
     #schedule-item {
       /* DOM */
+      width: 100%;
+      height: 15vh;
+      box-sizing: border-box;
       padding: 1em;
       /* Typography */
       font-size: 1em;
       /* Layout */
-      order: 1; } }
+      display: flex;
+      position: fixed;
+      top: 0;
+      justify-content: center;
+      align-items: center; } }
 #app {
   /* Typography */
   font-family: sans-serif;
   /* Design */
-  background-color: #da00ff;
-  /* Layout */
-  display: flex;
-  flex-direction: column; }
+  background-color: #da00ff; }
 
 /*# sourceMappingURL=../js/bundle.map*/
