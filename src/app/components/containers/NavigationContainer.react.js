@@ -53,21 +53,23 @@ class NavigationContainer extends React.Component {
   render() {
     return (
       <div id = 'nav'>
-        <p className = 'team'>{ this.state.team }</p>
-        <select value = { this.state.team } onChange = { this.changeTeam }>
-          { this.state.teams.map((team, i) => {
-            return (
-              <option key = { i } 
-                value = { team }
-              >
-                { team }
-              </option>
-            );
-          })}
-        </select>
+        <p>{ this.state.team }</p>
       </div>
     )
   }
+  /* 
+    <select value = { this.state.team } onChange = { this.changeTeam }>
+      { this.state.teams.map((team, i) => {
+        return (
+          <option key = { i } 
+            value = { team }
+          >
+            { team }
+          </option>
+        );
+      })}
+    </select>
+  */
 }
 
 function updateState(props) {

@@ -18,15 +18,25 @@
 
     /* Layout */
     order: 2;
+    text-align: center;
+
+    & > select {
+      /* Typography */
+      font-size: 1em;
+
+      /* Design */
+      color: #ffffff;
+
+      & > option {
+        /* Typography */
+        font-size: 0.5em;
+      }
+    }
   }
 
   @include breakpoint(phablet) {
   }
 
   @include breakpoint(tablet) {
-  }
-
-  .team {
-    text-align: center;
   }
 }

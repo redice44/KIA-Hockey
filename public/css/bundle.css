@@ -13,9 +13,16 @@
       /* Typography */
       font-size: 2em;
       /* Layout */
-      order: 2; } }
-  #nav .team {
-    text-align: center; }
+      order: 2;
+      text-align: center; }
+      #nav > select {
+        /* Typography */
+        font-size: 1em;
+        /* Design */
+        color: #ffffff; }
+        #nav > select > option {
+          /* Typography */
+          font-size: 0.5em; } }
 #schedule-list {
   /* Design */
   background-color: #062f42;
