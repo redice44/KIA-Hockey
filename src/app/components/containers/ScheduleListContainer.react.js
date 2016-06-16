@@ -54,7 +54,8 @@ class ScheduleListContainer extends React.Component {
 
 function updateState(props) {
   return {
-    games: props.games
+    games: props.games,
+    highlight: props.highlight
   }
 }
 
@@ -67,9 +68,16 @@ const mapStateToProps = function(store) {
       store.currentTeam === game.teams[1].name;
   });
 
-  return {
-    games: filteredGames
+  let highlight = store.gameHighlight;
+
+  if (filteredGames.length > 0 && !filteredGames.some(game => game.num === highlight)) {
+    highlight = filteredGames[0].num;
   }
+
+  return {
+    games: filteredGames,
+    highlight: highlight
+  };
 }
 
 export default connect(mapStateToProps)(ScheduleListContainer);
