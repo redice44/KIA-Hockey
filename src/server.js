@@ -62,7 +62,6 @@ server.use(Express.static(Path.join(__dirname, '../public'), {
 
 server.get('/games/', (req, res, next) => {
   console.log(`Request: [GET] ${req.originalUrl}`);
-  console.log(initialState);
   
   res.json({
     games: initialState.games

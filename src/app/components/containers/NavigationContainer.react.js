@@ -10,7 +10,7 @@ require('../../../stylesheets/components/containers/NavigationContainer.scss');
 
 class NavigationContainer extends React.Component {
   constructor(props) {
-    console.log('===== Init: NavigationContainer');
+    console.log('===== Init: NavigationContainer', props);
     super(props);
     this.state = _updateState(props);
   }
@@ -59,8 +59,6 @@ class NavigationContainer extends React.Component {
 function _updateState(props) {
   return {
     team: props.team
-    //teams: props.teams,
-    //games: props.games
   };
 }
 
@@ -69,8 +67,6 @@ const mapStateToProps = function(store) {
 
   return {
     team: store.currentTeam
-    //teams: store.teams,
-    //games: store.games
   };
 };
 
