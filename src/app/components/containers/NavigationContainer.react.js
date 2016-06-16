@@ -10,14 +10,12 @@ require('../../../stylesheets/components/containers/NavigationContainer.scss');
 
 class NavigationContainer extends React.Component {
   constructor(props) {
+    console.log('===== Init: NavigationContainer');
     super(props);
-    this.state = updateState(props);
-    this.updateFilter = this.updateFilter.bind(this);
-    this.changeTeam = this.changeTeam.bind(this);
-
-    this.updateFilter();
+    this.state = _updateState(props);
   }
 
+  /*
   changeTeam(e) {
     Store.dispatch({
       type: 'CHANGE_TEAM',
@@ -26,31 +24,17 @@ class NavigationContainer extends React.Component {
 
     this.updateFilter(e.target.value);
   }
-
-  updateFilter(team = this.state.team) {
-    let filtered = this.state.games.filter(game => {
-      return team === 'All' ||
-        game.teams[0].name === team ||
-        game.teams[1].name === team;  
-    });
-
-    Store.dispatch({
-      type: 'UPDATE_FILTER',
-      filteredGames: filtered
-    });
-
-    Store.dispatch({
-      type: 'CHANGE_HIGHLIGHT',
-      num: filtered[0].num
-    });
-  }
+  */
 
   componentWillReceiveProps(props) {
-    console.log('Updating: NavigationContainer', props);
-    this.setState(updateState(props));
+    console.log('=== Updating: NavigationContainer', props);
+
+    this.setState(_updateState(props));
   }
 
   render() {
+    console.log('=== Rendering: NavigationContainer');
+
     return (
       <div id = 'nav'>
         <p>{ this.state.team }</p>
@@ -72,19 +56,21 @@ class NavigationContainer extends React.Component {
   */
 }
 
-function updateState(props) {
+function _updateState(props) {
   return {
-    team: props.team,
-    teams: props.teams,
-    games: props.games
+    team: props.team
+    //teams: props.teams,
+    //games: props.games
   };
 }
 
 const mapStateToProps = function(store) {
+  console.log('===== Mapping Props: NavigationContainer');
+
   return {
-    team: store.currentTeam,
-    teams: store.teams,
-    games: store.games
+    team: store.currentTeam
+    //teams: store.teams,
+    //games: store.games
   };
 };
 

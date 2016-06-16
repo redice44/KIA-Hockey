@@ -11,12 +11,14 @@ require('../../../stylesheets/components/containers/ScheduleListContainer.scss')
 
 class ScheduleListContainer extends React.Component {
   constructor(props) {
+    console.log('===== Init: ScheduleListContainer', props);
+
     super(props);
     this.state = updateState(props);
   }
 
   componentWillReceiveProps(props) {
-    console.log('Updating: ScheduleListContainer', props);
+    console.log('=== Updating: ScheduleListContainer', props);
 
     this.setState(updateState(props));
   }
@@ -32,7 +34,7 @@ class ScheduleListContainer extends React.Component {
   }
 
   render() {
-    console.log('Rendering: ScheduleListContainer');
+    console.log('=== Rendering: ScheduleListContainer');
 
     return (
       <div id = 'schedule-list'>
@@ -52,15 +54,21 @@ class ScheduleListContainer extends React.Component {
 
 function updateState(props) {
   return {
-    games: props.games,
-    highlight: props.highlight
+    games: props.games
   }
 }
 
 const mapStateToProps = function(store) {
+  console.log('===== Mapping Props: ScheduleListContainer');
+
+  const filteredGames = store.games.filter(game => {
+    return store.currentTeam === 'All' ||
+      store.currentTeam === game.teams[0].name ||
+      store.currentTeam === game.teams[1].name;
+  });
+
   return {
-    games: store.filteredGames,
-    highlight: store.gameHighlight
+    games: filteredGames
   }
 }
 
