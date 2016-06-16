@@ -2,20 +2,12 @@
 
 import { createStore } from 'redux';
 
-const teams = [
-  // All: displays all games
-  'Lucky Bastards',
-  'Dragons',
-  'Boozers',
-  'Five Holers'
-];
-
 let initialState = {
   _stale: true,
   gameHighlight: 0,
   currentTeam: 'Lucky Bastards',
   games: [],
-  teams: teams
+  teams: []
 };
 
 function gameReducer(state = initialState, action) {
@@ -28,6 +20,8 @@ function gameReducer(state = initialState, action) {
       return Object.assign({}, state, { currentTeam: action.team });
     case 'SET_ALL_GAMES':
       return Object.assign({}, state, { games: action.games, _stale: false });
+    case 'SET_ALL_TEAMS':
+      return Object.assign({}, state, { teams: action.teams, _stale: false });
   }
 
   return state;

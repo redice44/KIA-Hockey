@@ -12,6 +12,7 @@ function enterHome(nextState) {
 
   if (Store.getState()._stale) {
     getGames();
+    getTeams();
   }
 }
 
@@ -20,6 +21,7 @@ function enterTeam(nextState) {
 
   if (Store.getState()._stale) {
     getGames();
+    getTeams();
   }
 
   if (nextState.params.hasOwnProperty('team') && 
@@ -30,6 +32,24 @@ function enterTeam(nextState) {
       team: nextState.params.team
     });
   }
+}
+
+// Retrieve the list of games for the store if not done so
+// Needs to be checked on all routes. 
+function getTeams() {
+  console.log('======= Requesting: All teams from /teams/');
+
+  Request.get('/teams/').end((err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log('======= Received: /teams/');
+
+    Store.dispatch({
+      type: 'SET_ALL_TEAMS',
+      teams: res.body.teams
+    });
+  });
 }
 
 // Retrieve the list of games for the store if not done so
@@ -48,10 +68,6 @@ function getGames() {
       games: res.body.games
     });
   });
-}
-
-function testing(nextState, replace) {
-  console.log('======= Entering Route: ', nextState);
 }
 
 export default (

@@ -11,9 +11,26 @@ server.use(Express.static(Path.join(__dirname, '../public'), {
   index: false
 }));
 
-server.get('/games/', (req, res, next) => {
+server.use((req, res, next) => {
   console.log(`Request: [GET] ${req.originalUrl}`);
-  
+  next();
+});
+
+server.get('/teams/', (req, res, next) => {
+  const teams = [
+    // All: displays all games
+    'Lucky Bastards',
+    'Dragons',
+    'Boozers',
+    'Five Holers'
+  ];
+
+  res.json({
+    teams: teams
+  });
+});
+
+server.get('/games/', (req, res, next) => {  
   // Generating random games upon request
   let gameTime = Moment.tz('Jun 15 2016 10:00PM', 'MMM Do YYYY hh:mmA', 'America/New_York');
 
@@ -27,13 +44,7 @@ server.get('/games/', (req, res, next) => {
 
   const numGames = 50;
 
-  let initialState = {
-    gameHighlight: 0,
-    currentTeam: 'Lucky Bastards',
-    games: [],
-    filteredGames: [],
-    teams: teams
-  };
+  let games = [];
 
   for (let i = 0; i < numGames; i++) {
     let home = Math.floor(Math.random() * 4);
@@ -49,7 +60,7 @@ server.get('/games/', (req, res, next) => {
       gameTime.add(1, 'hour').add(15, 'minutes');
     }
 
-    initialState.games.push({
+    games.push({
       num: i,
       teams: [
         {
@@ -64,13 +75,11 @@ server.get('/games/', (req, res, next) => {
   }
 
   res.json({
-    games: initialState.games
+    games: games
   });
 });
 
 server.get('*', (req, res, next) => {
-  console.log(`Request: [GET] ${req.originalUrl}`);
-
   res.sendFile(Path.resolve(__dirname, 'index.html'));
 });
 
