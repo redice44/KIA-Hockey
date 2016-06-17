@@ -11,8 +11,7 @@ function enterHome(nextState) {
   console.log('======= Entering Route: ', nextState.location.pathname);
 
   if (Store.getState()._stale) {
-    getGames();
-    getTeams();
+    _bootstrap();
   }
 }
 
@@ -20,18 +19,34 @@ function enterTeam(nextState) {
   console.log('======= Entering Route: ', nextState.location.pathname);
 
   if (Store.getState()._stale) {
-    getGames();
-    getTeams();
+    _bootstrap();
   }
 
   if (nextState.params.hasOwnProperty('team') && 
     nextState.params.team !== undefined) {
 
+    // Validate
     Store.dispatch({
       type: 'CHANGE_TEAM',
       team: nextState.params.team
     });
   }
+}
+
+function _bootstrap() {
+  console.log('======= Requesting: Bootstrap App - /bootstrap/');
+
+  Request.get('/bootstrap/').end((err, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log('======= Received: /bootstrap/');
+
+    Store.dispatch({
+      type: 'BOOTSTRAP_APP',
+      data: res.body.data
+    });
+  });
 }
 
 // Retrieve the list of games for the store if not done so

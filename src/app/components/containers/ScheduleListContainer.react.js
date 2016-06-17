@@ -71,6 +71,13 @@ const mapStateToProps = function(store) {
   let highlight = store.gameHighlight;
 
   if (filteredGames.length > 0 && !filteredGames.some(game => game.num === highlight)) {
+    if (highlight === undefined) {
+      // Update the store
+      Store.dispatch({
+        type: 'CHANGE_HIGHLIGHT',
+        num: filteredGames[0].num
+      });
+    }
     highlight = filteredGames[0].num;
   }
 

@@ -39,7 +39,7 @@ class ScheduleItemContainer extends React.Component {
       );
     } else {
       return (
-        <div></div>
+        <div id = 'schedule-item'></div>
       );
     }
   }

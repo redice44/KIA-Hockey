@@ -4,8 +4,7 @@ import { createStore } from 'redux';
 
 let initialState = {
   _stale: true,
-  gameHighlight: 0,
-  currentTeam: 'Lucky Bastards',
+  currentTeam: 'All',
   games: [],
   teams: []
 };
@@ -22,6 +21,13 @@ function gameReducer(state = initialState, action) {
       return Object.assign({}, state, { games: action.games, _stale: false });
     case 'SET_ALL_TEAMS':
       return Object.assign({}, state, { teams: action.teams, _stale: false });
+    case 'BOOTSTRAP_APP':
+      return Object.assign({}, state, {
+        teams: action.data.teams,
+        games: action.data.games,
+        currentTeam: action.data.currentTeam,
+        _stale: false
+      });
   }
 
   return state;

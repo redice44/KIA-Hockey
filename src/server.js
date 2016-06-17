@@ -16,42 +16,82 @@ server.use((req, res, next) => {
   next();
 });
 
-server.get('/teams/', (req, res, next) => {
-  const teams = [
-    // All: displays all games
-    'Lucky Bastards',
-    'Dragons',
-    'Boozers',
-    'Five Holers'
-  ];
+server.get('/bootstrap/', (req, res, next) => {
+  const teams = _getTeams();
+  const currentTeam = teams[0];
+  const games = _getGames();
 
   res.json({
-    teams: teams
+    data: {
+      teams: teams,
+      currentTeam: currentTeam,
+      games: games
+    }
   });
 });
 
-server.get('/games/', (req, res, next) => {  
-  // Generating random games upon request
-  let gameTime = Moment.tz('Jun 15 2016 10:00PM', 'MMM Do YYYY hh:mmA', 'America/New_York');
+server.get('/teams/', (req, res, next) => {
+  res.json({
+    teams: _getTeams()
+  });
+});
 
-  const teams = [
+server.get('/games/', (req, res, next) => {
+  res.json({
+    games: _getGames()
+  });
+});
+
+server.get('*', (req, res, next) => {
+  res.sendFile(Path.resolve(__dirname, 'index.html'));
+});
+
+server.use((req, res, next) => {
+  console.log(`404: ${req.originalURL}`);
+
+  let err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+server.use((err, req, res, next) => {
+  res.sendStatus(err.status || 500);
+});
+
+const port = 3000;
+server.listen(port);
+
+console.log(`Server listening on ${port}`);
+
+function _getTeams() {
+  // Validate
+  return [
     // All: displays all games
     'Lucky Bastards',
     'Dragons',
     'Boozers',
     'Five Holers'
   ];
+}
 
+function _getGames() {
   const numGames = 50;
 
+  return _generateGames(numGames);
+}
+
+function _generateGames(numGames) {
+  const teams = _getTeams();
+
   let games = [];
+  let gameTime = Moment.tz('Jun 15 2016 10:00PM', 'MMM Do YYYY hh:mmA', 'America/New_York');
 
   for (let i = 0; i < numGames; i++) {
-    let home = Math.floor(Math.random() * 4);
+    let home = Math.floor(Math.random() * teams.length);
     let away = home;
     
     while (home === away) {
-      away = Math.floor(Math.random() * 4);
+      away = Math.floor(Math.random() * teams.length);
     }
 
     if (i % 2 === 0) {
@@ -74,27 +114,5 @@ server.get('/games/', (req, res, next) => {
     });
   }
 
-  res.json({
-    games: games
-  });
-});
-
-server.get('*', (req, res, next) => {
-  res.sendFile(Path.resolve(__dirname, 'index.html'));
-});
-
-server.use((req, res, next) => {
-  console.log(`404: ${req.originalURL}`);
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-server.use((err, req, res, next) => {
-  res.sendStatus(err.status || 500);
-});
-
-const port = 3000;
-server.listen(port);
-
-console.log(`Server listening on ${port}`);
+  return games;
+}
