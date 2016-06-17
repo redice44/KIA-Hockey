@@ -14,18 +14,18 @@ module.exports = {
   output: {
     path: Path.join(__dirname, './public/'),
     filename: "js/bundle.js",
-    sourceMapFilename: "js/bundle.map"
+    sourceMapFilename: "[file].map"
   },
   module: {
     loaders: [
       {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract("style-loader", sassLoaders.join('!'))
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loaders: ['babel-loader']
-      },
-      {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style-loader", sassLoaders.join('!'))
       },
       {
         test: /\.json$/,
