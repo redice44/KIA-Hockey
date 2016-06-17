@@ -19,21 +19,40 @@ function enterTeam(nextState) {
   console.log('======= Entering Route: ', nextState.location.pathname);
 
   if (Store.getState()._stale) {
-    _bootstrap();
-  }
-
-  if (nextState.params.hasOwnProperty('team') && 
-    nextState.params.team !== undefined) {
-
-    // Validate
-    Store.dispatch({
-      type: 'CHANGE_TEAM',
-      team: nextState.params.team
-    });
+    _bootstrap(_updateTeam(nextState));
   }
 }
 
-function _bootstrap() {
+function _updateTeam(nextState) {
+  return () => {
+    if (nextState.params.hasOwnProperty('team') && 
+      nextState.params.team !== undefined) {
+      
+      const teams = Store.getState().teams;
+
+      // Team is in the team list
+      if (teams.find(team => {
+        return team.toLowerCase() === nextState.params.team.toLowerCase();
+      }) !== undefined) {
+        Store.dispatch({
+          type: 'CHANGE_TEAM',
+          team: nextState.params.team
+        });
+      } else {
+        console.log('Undefined Team', nextState.params.team);
+
+        // Extrapolate
+        // Default to All teams
+        Store.dispatch({
+          type: 'CHANGE_TEAM',
+          team: 'All'
+        });
+      }
+    }
+  }
+}
+
+function _bootstrap(cb = () => {}) {
   console.log('======= Requesting: Bootstrap App - /bootstrap/');
 
   Request.get('/bootstrap/').end((err, res) => {
@@ -46,6 +65,8 @@ function _bootstrap() {
       type: 'BOOTSTRAP_APP',
       data: res.body.data
     });
+
+    cb();
   });
 }
 
