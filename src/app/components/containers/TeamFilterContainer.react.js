@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
 import Store from '../../store';
 
@@ -12,20 +11,10 @@ require('../../../stylesheets/components/containers/TeamFilterContainer.scss');
 class TeamFilterContainer extends React.Component {
   constructor(props) {
     console.log('===== Init: TeamFilterContainer', props);
+
     super(props);
     this.state = _updateState(props);
   }
-
-  /*
-  changeTeam(e) {
-    Store.dispatch({
-      type: 'CHANGE_TEAM',
-      team: e.target.value
-    });
-
-    this.updateFilter(e.target.value);
-  }
-  */
 
   componentWillReceiveProps(props) {
     console.log('=== Updating: TeamFilterContainer', props);
@@ -38,28 +27,15 @@ class TeamFilterContainer extends React.Component {
 
     return (
       <div id = 'team-filter'>
-        <p>{ this.state.team }</p>
+        <p>{ this.state.teamFilter }</p>
       </div>
     )
   }
-  /* 
-    <select value = { this.state.team } onChange = { this.changeTeam }>
-      { this.state.teams.map((team, i) => {
-        return (
-          <option key = { i } 
-            value = { team }
-          >
-            { team }
-          </option>
-        );
-      })}
-    </select>
-  */
 }
 
 function _updateState(props) {
   return {
-    team: props.team
+    teamFilter: props.teamFilter
   };
 }
 
@@ -67,7 +43,7 @@ const mapStateToProps = function(store) {
   console.log('===== Mapping Props: TeamFilterContainer');
 
   return {
-    team: store.currentTeam
+    teamFilter: store.currentTeam
   };
 };
 
