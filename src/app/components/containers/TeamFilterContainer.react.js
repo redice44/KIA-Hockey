@@ -7,11 +7,11 @@ import { Link } from 'react-router';
 import Store from '../../store';
 
 /* Stylesheets */
-require('../../../stylesheets/components/containers/NavigationContainer.scss');
+require('../../../stylesheets/components/containers/TeamFilterContainer.scss');
 
-class NavigationContainer extends React.Component {
+class TeamFilterContainer extends React.Component {
   constructor(props) {
-    console.log('===== Init: NavigationContainer', props);
+    console.log('===== Init: TeamFilterContainer', props);
     super(props);
     this.state = _updateState(props);
   }
@@ -28,16 +28,16 @@ class NavigationContainer extends React.Component {
   */
 
   componentWillReceiveProps(props) {
-    console.log('=== Updating: NavigationContainer', props);
+    console.log('=== Updating: TeamFilterContainer', props);
 
     this.setState(_updateState(props));
   }
 
   render() {
-    console.log('=== Rendering: NavigationContainer');
+    console.log('=== Rendering: TeamFilterContainer');
 
     return (
-      <div id = 'nav'>
+      <div id = 'team-filter'>
         <p>{ this.state.team }</p>
       </div>
     )
@@ -64,11 +64,11 @@ function _updateState(props) {
 }
 
 const mapStateToProps = function(store) {
-  console.log('===== Mapping Props: NavigationContainer');
+  console.log('===== Mapping Props: TeamFilterContainer');
 
   return {
     team: store.currentTeam
   };
 };
 
-export default connect(mapStateToProps)(NavigationContainer);
+export default connect(mapStateToProps)(TeamFilterContainer);

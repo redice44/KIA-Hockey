@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import NavigationContainer from '../containers/NavigationContainer.react';
+import TeamFilterContainer from '../containers/TeamFilterContainer.react';
 import ScheduleListContainer from '../containers/ScheduleListContainer.react';
 import ScheduleItemContainer from '../containers/ScheduleItemContainer.react';
 
@@ -12,7 +12,7 @@ require('../../../stylesheets/components/layouts/MainLayout.scss');
 export default function(props) {
   return (
     <div id = 'app'>
-      <NavigationContainer />
+      <TeamFilterContainer />
       <ScheduleListContainer />
       <ScheduleItemContainer />
     </div>
