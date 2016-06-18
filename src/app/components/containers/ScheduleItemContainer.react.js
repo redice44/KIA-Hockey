@@ -4,6 +4,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Store from '../../store';
+import Logger from '../../util/logger';
+import LoggerLevels from '../../constants/LoggerConstants';
 import Game from '../presentation/Game.react';
 
 /* Stylesheets */
@@ -11,20 +13,20 @@ require('../../../stylesheets/components/containers/ScheduleItemContainer.scss')
 
 class ScheduleItemContainer extends React.Component {
   constructor(props) {
-    console.log('===== Init: ScheduleItemContainer', props);
+    Logger.log('Init: ScheduleItemContainer', LoggerLevels.CONTAINER_INIT);
 
     super(props);
     this.state = updateState(props);
   }
 
   componentWillReceiveProps(props) {
-    console.log('=== Updating: ScheduleItemContainer', props);
+    Logger.log('Updating: ScheduleItemContainer', LoggerLevels.CONTAINER_UPDATE);
 
     this.setState(updateState(props));
   }
 
   render() {
-    console.log('=== Rendering: ScheduleItemContainer');
+    Logger.log('Rendering: ScheduleItemContainer', LoggerLevels.CONTAINER_RENDER);
 
     if (this.state.hasOwnProperty('game') && this.state.game !== undefined) {
       const opponent = this.state.game.teams[0].name === this.state.team ? 1 : 0;
@@ -53,7 +55,8 @@ function updateState(props) {
 }
 
 const mapStateToProps = function(store) {
-  console.log('===== Mapping Props: ScheduleItemContainer');
+  Logger.log('Mapping: ScheduleItemContainer', LoggerLevels.CONTAINER_MAPPING);
+
   return {
     game: store.games[store.gameHighlight],
     team: store.currentTeam

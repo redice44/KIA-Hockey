@@ -3,11 +3,14 @@
 import React from 'react';
 import Moment from 'moment-timezone';
 
+import Logger from '../../util/logger';
+import LoggerLevels from '../../constants/LoggerConstants';
+
 /* Stylesheets */
 require('../../../stylesheets/components/presentation/Game.scss');
 
 export default function(props) {
-  console.log('Rendering Game');
+  Logger.log('Rendering: Game', LoggerLevels.PRESENTATION_RENDER);
   
   return (
     <div id = 'highlight-game'>

@@ -4,6 +4,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Store from '../../store';
+import Logger from '../../util/logger';
+import LoggerLevels from '../../constants/LoggerConstants';
 import GameListItem from '../presentation/GameListItem.react';
 
 /* Stylesheets */
@@ -11,14 +13,14 @@ require('../../../stylesheets/components/containers/ScheduleListContainer.scss')
 
 class ScheduleListContainer extends React.Component {
   constructor(props) {
-    console.log('===== Init: ScheduleListContainer', props);
+    Logger.log('Init: ScheduleListContainer', LoggerLevels.CONTAINER_INIT);
 
     super(props);
     this.state = updateState(props);
   }
 
   componentWillReceiveProps(props) {
-    console.log('=== Updating: ScheduleListContainer', props);
+    Logger.log('Updating: ScheduleListContainer', LoggerLevels.CONTAINER_UPDATE);
 
     this.setState(updateState(props));
   }
@@ -34,7 +36,7 @@ class ScheduleListContainer extends React.Component {
   }
 
   render() {
-    console.log('=== Rendering: ScheduleListContainer');
+    Logger.log('Rendering: ScheduleListContainer', LoggerLevels.CONTAINER_RENDER);
 
     return (
       <div id = 'schedule-list'>
@@ -60,7 +62,7 @@ function updateState(props) {
 }
 
 const mapStateToProps = function(store) {
-  console.log('===== Mapping Props: ScheduleListContainer');
+  Logger.log('Mapping Props: ScheduleListContainer', LoggerLevels.CONTAINER_MAPPING);
 
   const filteredGames = store.games.filter(game => {
     return store.currentTeam === 'All' ||

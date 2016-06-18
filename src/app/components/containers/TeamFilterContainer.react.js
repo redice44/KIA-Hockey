@@ -4,26 +4,28 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Store from '../../store';
+import Logger from '../../util/logger';
+import LoggerLevels from '../../constants/LoggerConstants';
 
 /* Stylesheets */
 require('../../../stylesheets/components/containers/TeamFilterContainer.scss');
 
 class TeamFilterContainer extends React.Component {
   constructor(props) {
-    console.log('===== Init: TeamFilterContainer', props);
+    Logger.log('Init: TeamFilterContainer', LoggerLevels.CONTAINER_INIT);
 
     super(props);
     this.state = _updateState(props);
   }
 
   componentWillReceiveProps(props) {
-    console.log('=== Updating: TeamFilterContainer', props);
+    Logger.log('Updating: TeamFilterContainer', LoggerLevels.CONTAINER_UPDATE);
 
     this.setState(_updateState(props));
   }
 
   render() {
-    console.log('=== Rendering: TeamFilterContainer');
+    Logger.log('Rendering: TeamFilterContainer', LoggerLevels.CONTAINER_RENDER);
 
     return (
       <div id = 'team-filter'>
@@ -40,7 +42,7 @@ function _updateState(props) {
 }
 
 const mapStateToProps = function(store) {
-  console.log('===== Mapping Props: TeamFilterContainer');
+  Logger.log('Mapping: TeamFilterContainer', LoggerLevels.CONTAINER_MAPPING);
 
   return {
     teamFilter: store.currentTeam

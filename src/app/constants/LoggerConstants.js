@@ -1,0 +1,23 @@
+'use strict';
+
+export default {
+  'NO_LOGGING': -1,
+  'CRITICAL': 0,
+  'IMPORTANT': 1,
+  'INFO': 2,
+  'DETAILS': 3,
+
+  'AJAX_SUCCESS': 0,
+  'AJAX_REQUEST': 1,
+
+  'ROUTE_ENTER': 1,
+
+  'ACTION_DISPATCH': 0,
+  
+  'CONTAINER_INIT': 1,
+  'CONTAINER_UPDATE': 2,
+  'CONTAINER_RENDER': 3,
+  'CONTAINER_MAPPING': 3, 
+  
+  'PRESENTATION_RENDER': 3
+};

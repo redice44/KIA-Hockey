@@ -4,11 +4,13 @@ import React from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Request from 'superagent';
 import Store from './store';
+import Logger from './util/logger';
+import LoggerLevels from './constants/LoggerConstants';
 
 import MainLayout from './components/layouts/MainLayout.react';
 
 function enterHome(nextState) {
-  console.log('======= Entering Route: ', nextState.location.pathname);
+  Logger.log(`Entering Route: ${nextState.location.pathname}`, LoggerLevels.ROUTE_ENTER);
 
   if (Store.getState()._stale) {
     _bootstrap();
@@ -16,7 +18,7 @@ function enterHome(nextState) {
 }
 
 function enterTeam(nextState) {
-  console.log('======= Entering Route: ', nextState.location.pathname);
+  Logger.log(`Entering Route: ${nextState.location.pathname}`, LoggerLevels.ROUTE_ENTER);
 
   if (Store.getState()._stale) {
     _bootstrap(_updateTeam(nextState));
@@ -53,13 +55,13 @@ function _updateTeam(nextState) {
 }
 
 function _bootstrap(cb = () => {}) {
-  console.log('======= Requesting: Bootstrap App - /bootstrap/');
+  Logger.log('Requesting: Bootstrap App', LoggerLevels.AJAX_REQUEST);
 
   Request.get('/bootstrap/').end((err, res) => {
     if (err) {
       console.log(err);
     }
-    console.log('======= Received: /bootstrap/');
+    Logger.log('Received: Bootstrap App', LoggerLevels.AJAX_SUCCESS);
 
     Store.dispatch({
       type: 'BOOTSTRAP_APP',
@@ -73,13 +75,13 @@ function _bootstrap(cb = () => {}) {
 // Retrieve the list of games for the store if not done so
 // Needs to be checked on all routes. 
 function getTeams() {
-  console.log('======= Requesting: All teams from /teams/');
+  Logger.log('Requesting: All teams', LoggerLevels.AJAX_REQUEST);
 
   Request.get('/teams/').end((err, res) => {
     if (err) {
       console.log(err);
     }
-    console.log('======= Received: /teams/');
+    Logger.log('Received: All teams', LoggerLevels.AJAX_SUCCESS);
 
     Store.dispatch({
       type: 'SET_ALL_TEAMS',
@@ -91,13 +93,13 @@ function getTeams() {
 // Retrieve the list of games for the store if not done so
 // Needs to be checked on all routes. 
 function getGames() {
-  console.log('======= Requesting: All games from /games/');
+  Logger.log('Requesting: All games', LoggerLevels.AJAX_REQUEST);
 
   Request.get('/games/').end((err, res) => {
     if (err) {
       console.log(err);
     }
-    console.log('======= Received: /games/');
+    Logger.log('Received: All games', LoggerLevels.AJAX_SUCCESS);
 
     Store.dispatch({
       type: 'SET_ALL_GAMES',

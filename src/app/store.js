@@ -2,6 +2,9 @@
 
 import { createStore } from 'redux';
 
+import Logger from './util/logger';
+import LoggerLevels from './constants/LoggerConstants';
+
 let initialState = {
   _stale: true,
   currentTeam: 'All',
@@ -10,7 +13,7 @@ let initialState = {
 };
 
 function gameReducer(state = initialState, action) {
-  console.log(`Action Received: `, action);
+  Logger.log(`Action Received: ${action.type}`, LoggerLevels.ACTION_DISPATCH);
 
   switch(action.type) {
     case 'CHANGE_HIGHLIGHT':
