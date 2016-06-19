@@ -4,6 +4,7 @@ import { createStore } from 'redux';
 
 import Logger from './util/logger';
 import LoggerLevels from './constants/LoggerConstants';
+import Actions from './constants/ActionConstants';
 
 let initialState = {
   _stale: true,
@@ -16,15 +17,11 @@ function gameReducer(state = initialState, action) {
   Logger.log(`Action Received: ${action.type}`, LoggerLevels.ACTION_DISPATCH);
 
   switch(action.type) {
-    case 'CHANGE_HIGHLIGHT':
+    case Actions.CHANGE_HIGHLIGHT:
       return Object.assign({}, state, { gameHighlight: action.num });
-    case 'CHANGE_TEAM':
+    case Actions.CHANGE_TEAM:
       return Object.assign({}, state, { currentTeam: action.team });
-    case 'SET_ALL_GAMES':
-      return Object.assign({}, state, { games: action.games, _stale: false });
-    case 'SET_ALL_TEAMS':
-      return Object.assign({}, state, { teams: action.teams, _stale: false });
-    case 'BOOTSTRAP_APP':
+    case Actions.BOOTSTRAP_APP:
       return Object.assign({}, state, {
         teams: action.data.teams,
         games: action.data.games,

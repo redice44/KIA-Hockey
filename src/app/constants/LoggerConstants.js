@@ -1,7 +1,8 @@
 'use strict';
 
 export default {
-  'NO_LOGGING': -1,
+  'NO_LOGGING': -2,
+  'ERR_ONLY': -1,
   'CRITICAL': 0,
   'IMPORTANT': 1,
   'INFO': 2,
@@ -19,5 +20,7 @@ export default {
   'CONTAINER_RENDER': 3,
   'CONTAINER_MAPPING': 3, 
   
-  'PRESENTATION_RENDER': 3
+  'PRESENTATION_RENDER': 3,
+
+  'ERR_UNKNOWN_TEAM': -1
 };

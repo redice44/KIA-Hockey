@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import Store from '../../store';
 import Logger from '../../util/logger';
 import LoggerLevels from '../../constants/LoggerConstants';
+import { changeHighlight } from '../../actions/DispatchActions';
+
 import GameListItem from '../presentation/GameListItem.react';
 
 /* Stylesheets */
@@ -28,10 +30,7 @@ class ScheduleListContainer extends React.Component {
   // Will Trigger the details display to update
   showDetails(gameNum) {
     return function() {
-      Store.dispatch({
-        type: 'CHANGE_HIGHLIGHT',
-        num: gameNum
-      });
+      changeHighlight(gameNum);
     };
   }
 
@@ -75,10 +74,7 @@ const mapStateToProps = function(store) {
   if (filteredGames.length > 0 && !filteredGames.some(game => game.num === highlight)) {
     if (highlight === undefined) {
       // Update the store
-      Store.dispatch({
-        type: 'CHANGE_HIGHLIGHT',
-        num: filteredGames[0].num
-      });
+      changeHighlight(filteredGames[0].num)
     }
     highlight = filteredGames[0].num;
   }

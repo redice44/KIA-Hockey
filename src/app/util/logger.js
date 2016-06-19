@@ -17,7 +17,7 @@ class logger {
   log(message, level = 0) {
     if (Number.isInteger(level) && level <= this.logLevel)
     {
-      console.log(`${'='.repeat(level * 4 + 3)} ${message}`);
+      console.log(`${'='.repeat(Math.max(0, level * 4 + 3))} ${message}`);
     }
   }
 }
