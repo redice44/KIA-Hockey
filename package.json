@@ -8,6 +8,7 @@
   },
   "scripts": {
     "db": "mongod",
+    "db-setup": "node src/server/db/setup.js",
     "start": "webpack --progress --colors --watch",
     "dev-server": "nodemon src/server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"

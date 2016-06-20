@@ -1,8 +1,18 @@
 # Kendall Ice Arena Adult Hockey
 
-To build files
+### Initial Setup
+Be sure to have [MongoDB](https://www.mongodb.com/download-center) installed and accessible on your $PATH.
+
+Startup MongoDb
+> npm run db
+
+Setup placeholder data for the database
+> npm run db-setup
+
+Build and Watch App
 > npm start
 
-### Active Development Version
+Run Server
+> npm run dev-server
 
-[MVP](./docs/specifications/00_mvp/pipeline.md) is under development. View the [Roadmap](./docs/roadmap.md) to preview what's coming down the pipeline. 
+Go to [localhost:3000](http://localhost:3000) to see the app.

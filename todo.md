@@ -1,17 +1,18 @@
 # Todos
 
-- Create routes for games
-  - Use game nums/ids for param
-- Refactor connecting teams
-  - Use IDs over names
-- Integrate MongoDB
-  - Setup CRUD
-    - Games
-    - Teams
 - More game details as needed
+- HTML viewable API endpoints
+  - CRUD
+    - Basic Authentication
+- Redux and react rendering on the server
+- Create routes for individual games
+- Refactor identifying teams
 - Tablet and Desktop styles
+
+### Later
+
 - Handle logging errors in Logger
 
-# Efficiencies
+### Efficiencies
 
 - Check out why GameListItem renders so often
