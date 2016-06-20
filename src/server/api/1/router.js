@@ -27,6 +27,19 @@ router.route('/')
     });
   });
 
+router.route('/teams/')
+  .get((req, res,) => {
+    res.json({
+      teams: _getTeams()
+    });
+  });
+
+router.route('/games/')
+  .get((req, res) => {
+    res.json({
+      games: _getGames()
+    });
+  });
 
 function _getTeams() {
   // Validate

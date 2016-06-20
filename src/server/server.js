@@ -19,18 +19,6 @@ server.use((req, res, next) => {
 
 server.use('/api/1/', apiRouter);
 
-server.get('/teams/', (req, res, next) => {
-  res.json({
-    teams: _getTeams()
-  });
-});
-
-server.get('/games/', (req, res, next) => {
-  res.json({
-    games: _getGames()
-  });
-});
-
 server.get('*', (req, res, next) => {
   res.sendFile(Path.resolve(__dirname, '../index.html'));
 });
