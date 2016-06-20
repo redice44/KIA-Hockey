@@ -29,7 +29,7 @@ function enterTeam(nextState) {
 function _bootstrap(cb = () => {}) {
   Logger.log('Requesting: Bootstrap App', LoggerLevels.AJAX_REQUEST);
 
-  Request.get('/bootstrap/').end((err, res) => {
+  Request.get('/api/1/').end((err, res) => {
     if (err) {
       console.log(err);
     }
