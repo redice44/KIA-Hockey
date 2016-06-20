@@ -60,7 +60,7 @@ function _makeGames(numGames) {
       seasonStart.add(1, 'hour').add(15, 'minutes');
     }
 
-    games.push(_makeGame(i, teams[home], teams[away], seasonStart.format()));
+    games.push(_makeGame(i, teams[home].name, teams[away].name, seasonStart.format()));
   }
   return games;
 }
