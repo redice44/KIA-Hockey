@@ -29,15 +29,17 @@ function enterTeam(nextState) {
 function _bootstrap(cb = () => {}) {
   Logger.log('Requesting: Bootstrap App', LoggerLevels.AJAX_REQUEST);
 
-  Request.get('/api/1/').end((err, res) => {
-    if (err) {
-      console.log(err);
-    }
-    Logger.log('Received: Bootstrap App', LoggerLevels.AJAX_SUCCESS);
+  Request.get('/api/1/')
+    .set('Content-Type', 'application/json')
+    .end((err, res) => {
+      if (err) {
+        return console.log(err);
+      }
+      Logger.log('Received: Bootstrap App', LoggerLevels.AJAX_SUCCESS);
 
-    bootstrapApp(res.body.data);
-    cb();
-  });
+      bootstrapApp(res.body.data);
+      cb();
+    });
 }
 
 function _updateTeam(nextState) {
