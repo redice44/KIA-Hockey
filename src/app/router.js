@@ -37,6 +37,7 @@ function _bootstrap(cb = () => {}) {
       }
       Logger.log('Received: Bootstrap App', LoggerLevels.AJAX_SUCCESS);
 
+      console.log(res.body.data);
       bootstrapApp(res.body.data);
       cb();
     });

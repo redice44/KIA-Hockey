@@ -14,85 +14,82 @@ router.use((req, res, next) => {
 // /api/1/
 router.route('/')
   .get((req, res) => {
-    const teams = _getTeams();
-    const currentTeam = teams[0];
-    const games = _getGames();
-
-    res.json({
-      data: {
-        teams: teams,
-        currentTeam: currentTeam,
-        games: games
-      }
+    _getTeams(req.db, (teams) => {
+      _getGames(req.db, (games) => {
+        res.format({
+          json: function() {
+            res.send({
+              data: {
+                teams: teams,
+                currentTeam: teams[0],
+                games: games
+              }
+            });
+          }
+        });
+      });
     });
   });
 
 router.route('/teams/')
   .get((req, res) => {
-    res.json({
-      teams: _getTeams()
+    _getTeams(req.db, (teams) => {
+      res.format({
+        json: function() {
+          res.send({
+            teams: teams
+          });
+        }
+      });
     });
   });
 
 router.route('/games/')
   .get((req, res) => {
-    res.json({
-      games: _getGames()
+    const Games = req.db.collection('games');
+
+    Games.find().toArray((err, games) => {
+      if (err) {
+        return console.log(err);
+      }
+
+      console.log(`Retrieved ${games.length} games.`);
+      res.format({
+        json: function() {
+          res.send({
+            games: games
+          });
+        }
+      });
     });
   });
 
-function _getTeams() {
-  // Validate
-  return [
-    // All: displays all games
-    'Lucky Bastards',
-    'Dragons',
-    'Boozers',
-    'Five Holers'
-  ];
-}
+function _getTeams(db, cb) {
+  const Teams = db.collection('teams');
 
-function _getGames() {
-  const numGames = 50;
-
-  return _generateGames(numGames);
-}
-
-function _generateGames(numGames) {
-  const teams = _getTeams();
-
-  let games = [];
-  let gameTime = Moment.tz('Jun 15 2016 10:00PM', 'MMM Do YYYY hh:mmA', 'America/New_York');
-
-  for (let i = 0; i < numGames; i++) {
-    let home = Math.floor(Math.random() * teams.length);
-    let away = home;
-    
-    while (home === away) {
-      away = Math.floor(Math.random() * teams.length);
+  Teams.find().toArray((err, teams) => {
+    if (err) {
+      return console.log(err);
     }
 
-    if (i % 2 === 0) {
-      gameTime.add(7, 'days').subtract(1, 'hour').subtract(15, 'minutes');
-    } else {
-      gameTime.add(1, 'hour').add(15, 'minutes');
+    console.log(`Retrieved ${teams.length} teams.`);
+    cb(teams.map(t => {
+      return t.name;
+    }));
+  });
+}
+
+function _getGames(db, cb) {
+  const Games = db.collection('games');
+
+  Games.find().toArray((err, games) => {
+    if (err) {
+      return console.log(err);
     }
 
-    games.push({
-      num: i,
-      teams: [
-        {
-          name: teams[home]
-        },
-        {
-          name: teams[away]
-        }
-      ],
-      time: gameTime.clone()
-    });
-  }
-
-  return games;
+    console.log(`Retrieved ${games.length} games.`);
+    cb(games);
+  });
 }
 
 module.exports = router;
