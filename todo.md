@@ -11,3 +11,7 @@
 - More game details as needed
 - Tablet and Desktop styles
 - Handle logging errors in Logger
+
+# Efficiencies
+
+- Check out why GameListItem renders so often
