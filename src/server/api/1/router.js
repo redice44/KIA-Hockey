@@ -28,7 +28,7 @@ router.route('/')
   });
 
 router.route('/teams/')
-  .get((req, res,) => {
+  .get((req, res) => {
     res.json({
       teams: _getTeams()
     });
