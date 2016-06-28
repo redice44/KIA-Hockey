@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "description": "Kendall Ice Arena Adult Hockey",
   "main": "index.js",
-  "directories": {
-  },
+  "directories": {},
   "scripts": {
+    "db:dev": "mongod",
+    "server:dev": "babel-node src/server/server.js",
+    "start": "nodemon --exec \"npm run server:dev\""
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,8 @@
   },
   "homepage": "https://github.com/redice44/KIA-Hockey#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "mongodb": "^2.1.18"
   },
   "devDependencies": {
     "nodemon": "^1.9.2"
